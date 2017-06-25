@@ -1,0 +1,9 @@
+---
+# Install appium
+
+- hosts: emulators_servers
+  become: true
+  vars_files:
+    - defaults/main.yml
+  roles:
+    - role: android_sdk

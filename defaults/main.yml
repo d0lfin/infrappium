@@ -1,0 +1,5 @@
+---
+# ololo
+
+android_sdk_download_location: https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
+android_sdk_install_location: /opt/android-sdk
