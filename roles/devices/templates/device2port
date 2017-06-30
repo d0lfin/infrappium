@@ -1,0 +1,11 @@
+#!/bin/bash
+
+port=4726
+
+case "$1" in
+{% for device in devices %}
+    "{{ device.id }}") let port+={{ loop.index }}
+    ;;
+{% endfor %}
+esac
+echo $port

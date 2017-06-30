@@ -6,4 +6,6 @@
   vars_files:
     - defaults/main.yml
   roles:
-    - role: android_sdk
+    - appium
+    - docker
+    - emulators

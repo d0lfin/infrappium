@@ -1,0 +1,8 @@
+---
+  - name: Installing repo for Java 8 in Ubuntu
+    apt_repository: repo='ppa:openjdk-r/ppa'
+
+  - name: Ensure Java is installed.
+    apt:
+      name: openjdk-8-jdk
+      state: present

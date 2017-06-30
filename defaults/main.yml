@@ -1,8 +1,21 @@
 ---
-# ololo
 
 android_sdk_download_location: https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
 android_sdk_install_location: /opt/android-sdk
 android_sdk_versions:
   - 24
   - 25
+android_emulator_skins:
+  - HVGA
+  - QVGA
+  - WQVGA400
+  - WQVGA432
+  - WSVGA
+  - WVGA800
+  - WVGA854
+  - WXGA720
+  - WXGA800
+  - WXGA800-7in
+
+device_image_name: appium-device
+base_emulator_image_name: appium-emulator

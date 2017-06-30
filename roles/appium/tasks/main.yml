@@ -1,0 +1,9 @@
+---
+  - name: Install Java
+    include: java.yml
+
+  - name: Install Android SDK
+    include: android-sdk.yml
+
+  - name: Install NodeJS
+    include: nodejs.yml

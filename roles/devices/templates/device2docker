@@ -1,0 +1,77 @@
+#!/bin/bash
+
+DOCKER_IMAGE_ID=`docker images | grep '{{ device_image_name }}' | awk '{print($1)}'`
+HUB="{{ hub_name }}"
+CONTAINERS=( `docker ps -a | grep device | sed 's/^.*\-\(.*\)$/\1/g'`)
+CONNECTED_DEVICES=( `ls /dev/ | grep device | sed 's/^.*\-\(.*\)$/\1/g'` )
+
+function delete_container () {
+    local udid=$1
+    local container=`docker ps -a | grep $udid | sed 's/^\([a-z0-9]*\).*$/\1/g'`
+    docker stop $container || echo 'can not stop container'
+    docker rm $container || echo 'already deleted'
+}
+
+function create_container () {
+    local udid=$1
+    local symlink=/dev/device-$udid
+    local port=`/usr/local/bin/device2port $udid`
+    docker run -d --name "device-$udid" --log-opt max-size=50m -m 1g --device=$symlink:/dev/bus/usb/003/011  \
+        -e HUB=$HUB -e DEVICEUDID=$udid -e PORT=$port $DOCKER_IMAGE_ID || echo 'already created'
+}
+
+function update_symlink () {
+    local udid=$1
+    local device_path=`ls -l /dev/ | grep $udid | sed 's/^.*> \(.*\)$/\1/g'`
+    if [[ $device_path != /dev* ]]
+    then
+        local symlink=/dev/device-$udid
+        local temp_symlink=/dev/temp-$udid
+        device_path=/dev/$device_path
+        setfacl -m u:$USER:rw $device_path
+        ln -s $device_path $temp_symlink
+        mv $temp_symlink $symlink
+        rm $temp_symlink
+    fi
+}
+
+if [[ $ACTION = "add" ]]
+then
+    for device in "${CONNECTED_DEVICES[@]}"
+    do
+        update_symlink $device
+        present=0
+        for container in "${CONTAINERS[@]}"
+        do
+            if [[ $device = $container ]]
+            then
+                present=1
+            fi
+        done
+        if [[ $present = 0 ]]
+        then
+            create_container $device
+        fi
+    done
+elif [[ $ACTION = "remove" ]]
+then
+    sleep 5
+    CONNECTED_DEVICES=( `ls /dev/ | grep device | sed 's/^.*\-\(.*\)$/\1/g'` )
+    for container in "${CONTAINERS[@]}"
+    do
+        present=0
+        for device in "${CONNECTED_DEVICES[@]}"
+        do
+            if [[ $device = $container ]]
+            then
+                present=1
+            fi
+        done
+        if [[ $present = 0 ]]
+        then
+            delete_container $container
+        fi
+    done
+fi
+
+exit 0
