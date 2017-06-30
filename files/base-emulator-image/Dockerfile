@@ -41,6 +41,8 @@ RUN dpkg --add-architecture i386 \
 # Reload cache after add location of graphic libraries
     && ldconfig -v \
 
+    && chmod +x /opt/x.sh \
+
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD ln -s /usr/lib/jvm/java-8-openjdk-amd64/bin/java /usr/bin/java \
