@@ -1,0 +1,7 @@
+---
+
+- name: Start a Selenium Hub container
+  docker:
+    name: seleniu-hub
+    image: selenium/hub
+    state: started

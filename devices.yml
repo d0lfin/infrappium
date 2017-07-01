@@ -7,4 +7,5 @@
   roles:
     - appium
     - docker
+    - selenium-hub
     - devices

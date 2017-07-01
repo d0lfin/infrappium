@@ -25,3 +25,12 @@
   with_items:
     - python-setuptools
     - docker-ce
+
+- name: 'Installing Ansible dependencies'
+  easy_install:
+    name: pip
+
+- name: 'Installing Ansible PIP dependencies'
+  pip:
+    name: docker-py
+    state: present
