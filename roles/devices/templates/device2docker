@@ -1,7 +1,6 @@
 #!/bin/bash
 
 DOCKER_IMAGE_ID=`docker images | grep '{{ device_image_name }}' | awk '{print($1)}'`
-HUB="{{ hub_name }}"
 CONTAINERS=( `docker ps -a | grep device | sed 's/^.*\-\(.*\)$/\1/g'`)
 CONNECTED_DEVICES=( `ls /dev/ | grep device | sed 's/^.*\-\(.*\)$/\1/g'` )
 
@@ -17,7 +16,11 @@ function create_container () {
     local symlink=/dev/device-$udid
     local port=`/usr/local/bin/device2port $udid`
     docker run -d --name "device-$udid" --log-opt max-size=50m -m 1g --device=$symlink:/dev/bus/usb/003/011  \
-        -e HUB=$HUB -e DEVICEUDID=$udid -e PORT=$port $DOCKER_IMAGE_ID || echo 'already created'
+        -v /usr/lib/jvm:/usr/lib/jvm \
+        -v {{ android_sdk_install_location }}:{{ android_sdk_install_location }} \
+        -v {{ appium_install_location }}/node_modules/appium:/opt/appium \
+        -e ANDROID_HOME={{ android_sdk_install_location }} -e DEVICEUDID=$udid -e PORT=$port \
+        $DOCKER_IMAGE_ID || echo 'already created'
 }
 
 function update_symlink () {

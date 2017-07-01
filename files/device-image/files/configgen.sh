@@ -36,14 +36,13 @@ cat << EndOfMessage
         "proxy": "ru.yandex.qatools.selenium.proxy.WatchdogProxy",
         "cleanUpCycle": 2000,
         "timeout": 90000,
-        "url": "http://${HOST}:${PORT}/wd/hub",
         "maxSession": 1,
         "port": ${PORT},
         "host": "${HOST}",
         "register": true,
         "registerCycle": 5000,
         "hubPort": ${HUB_PORT},
-        "hubHost": "${HUB}"
+        "hubHost": "localhost"
     }
 }
 EndOfMessage
