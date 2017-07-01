@@ -19,3 +19,5 @@ android_emulator_skins:
 
 device_image_name: appium-device
 base_emulator_image_name: appium-emulator
+
+appium_install_location: /opt/appium

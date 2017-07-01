@@ -1,5 +1,4 @@
 ---
-# Install appium
 
 - hosts: emulators_servers
   become: true
@@ -8,4 +7,4 @@
   roles:
     - appium
     - docker
-#    - emulators
+    - devices
