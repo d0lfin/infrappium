@@ -34,7 +34,7 @@ RUN dpkg --add-architecture i386 \
     zlib1g:i386 \
 
 # Install nodejs
-    && curl --silent --location https://deb.nodesource.com/setup_4.x | bash - \
+    && curl --silent --location https://deb.nodesource.com/setup_6.x | bash - \
     && apt-get update && apt-get install -y nodejs \
     && apt-get clean \
 

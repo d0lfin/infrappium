@@ -1,0 +1,5 @@
+---
+
+- synchronize:
+    src: files/device-image
+    dest: /some/absolute/path
