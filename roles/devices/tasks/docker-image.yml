@@ -1,5 +1,11 @@
 ---
 
-- synchronize:
+- name: Copy image files to remote host
+  synchronize:
     src: files/device-image
-    dest: /some/absolute/path
+    dest: "{{ docker_tmp_images_path }}"
+
+- name: Build an image
+  docker_image:
+    path: "{{ docker_tmp_images_path }}/device-image"
+    name: "{{ docker_device_image_name }}"

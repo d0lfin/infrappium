@@ -1,12 +1,7 @@
 ---
-- name: copy script to launch container with appium for device
-  template: src=device2docker  dest=/usr/local/bin/ mode=755
 
-- name: copy rules to launch script on connected device
-  template: src=51-android.rules  dest=/etc/udev/rules.d/
+- name: Build docker image for devices
+  include: docker-image.yml
 
-- name: copy script for get port by device id
-  template: src=device2port  dest=/usr/local/bin/ mode=755
-
-- name: restart udev
-  command: udevadm control --reload
+- name: Configurate udev
+  include: udev.yml

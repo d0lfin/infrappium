@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_IMAGE_ID=`docker images | grep '{{ device_image_name }}' | awk '{print($1)}'`
+DOCKER_IMAGE_ID=`docker images | grep '{{ docker_device_image_name }}' | awk '{print($1)}'`
 CONTAINERS=( `docker ps -a | grep device | sed 's/^.*\-\(.*\)$/\1/g'`)
 CONNECTED_DEVICES=( `ls /dev/ | grep device | sed 's/^.*\-\(.*\)$/\1/g'` )
 

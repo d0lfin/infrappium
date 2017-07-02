@@ -17,8 +17,8 @@ android_emulator_skins:
   - WXGA800
   - WXGA800-7in
 
-device_image_name: appium-device
-device_image_dockerfile_path: /tmp/
-base_emulator_image_name: appium-emulator
+docker_device_image_name: appium-device
+docker_base_emulator_image_name: appium-emulator
+docker_tmp_images_path: /tmp
 
 appium_install_location: /opt/appium
