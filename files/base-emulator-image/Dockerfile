@@ -7,8 +7,6 @@ ENV DISPLAY :10
 
 COPY files/android.conf /etc/ld.so.conf.d/
 COPY files/xorg.conf /etc/X11/
-COPY files/Emulator.ini /root/.android/avd/
-COPY files/config.ini /root/.android/avd/Emulator.avd/
 COPY files/x.sh /opt/
 
 RUN dpkg --add-architecture i386 \
@@ -44,6 +42,9 @@ RUN dpkg --add-architecture i386 \
     && chmod +x /opt/x.sh \
 
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+COPY files/Emulator.ini /root/.android/avd/
+COPY files/config.ini /root/.android/avd/Emulator.avd/
 
 CMD ln -s /usr/lib/jvm/java-8-openjdk-amd64/bin/java /usr/bin/java \
     && /opt/x.sh \

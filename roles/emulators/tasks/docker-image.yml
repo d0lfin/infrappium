@@ -1,0 +1,12 @@
+---
+
+- name: Copy emulator config.ini
+  template: src=config.ini  dest="{{ docker_tmp_images_path }}/base-emulator-image/files/"
+
+- name: Copy emulator Emulator.ini
+  template: src=Emulator.ini  dest="{{ docker_tmp_images_path }}/base-emulator-image/files/"
+
+- name: Build an image
+  docker_image:
+    path: "{{ docker_tmp_images_path }}/base-emulator-image"
+    name: "emulator-{{ item[1] | lower }}-{{ item[0] }}"
