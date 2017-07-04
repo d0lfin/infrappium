@@ -1,0 +1,24 @@
+{
+  {% for skin in android_emulator_skins %}
+"{{ skin | lower }}": {
+    "default": "{{ android_sdk_versions[0] }}",
+    "versions": {
+    {% for sdk in android_sdk_versions %}
+    "{{ sdk }}": {
+          "image": "emulator-{{ skin | lower }}-{{ sdk }}",
+          "port": "4724",
+          "path" : "/wd/hub",
+          "volumes" : [
+            "/usr/lib/jvm:/usr/lib/jvm:ro",
+            "{{ android_sdk_install_location }}:{{ android_sdk_install_location }}:ro",
+            "{{ appium_install_location }}/node_modules/appium:/opt/appium:ro"
+          ]
+        }{% if not loop.last %},{% endif %}
+
+    {% endfor %}
+ }
+  }{% if not loop.last %},{% endif %}
+
+  {% endfor %}
+
+}

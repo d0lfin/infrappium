@@ -1,0 +1,20 @@
+---
+
+- name: Create selenoid direcory
+  file:
+    path: /etc/selenoid
+    state: directory
+
+- name: Copy selenoid browsers.json
+  template: src=browsers.json  dest=/etc/selenoid/browsers.json
+
+- name: Start a selenoid container
+  docker:
+    name: selenoid
+    image: aerokube/selenoid:latest-release
+    ports:
+      - "4444:4444"
+    volumes:
+      - "/etc/selenoid:/etc/selenoid"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    state: started
