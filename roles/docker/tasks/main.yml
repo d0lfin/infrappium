@@ -12,6 +12,7 @@
   apt_key:
     url: "https://download.docker.com/linux/ubuntu/gpg"
     state: present
+    validate_certs: no
 
 - name: 'Adding APT repository'
   apt_repository:

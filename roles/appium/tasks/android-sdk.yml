@@ -1,33 +1,33 @@
 ---
-  - name: Download Android SDK tools
-    get_url: url={{ android_sdk_download_location }} dest=/tmp/sdk.zip
 
-  - name: Creates Android SDK directory
-    file: path={{ android_sdk_install_location }} state=directory
+- name: Download Android SDK tools
+  get_url:
+    url: "{{ android_sdk_download_location }}"
+    dest: /tmp/sdk.zip
+    validate_certs: no
 
-  - name: Extract Android SDK tools
-    unarchive: src=/tmp/sdk.zip dest={{ android_sdk_install_location }} copy=no
+- name: Extract Android SDK tools
+  unarchive: src=/tmp/sdk.zip dest=/opt copy=no
 
-  - name: Set system wide PATH to contain Android SDK tools
-    lineinfile: dest=/etc/environment regexp=^PATH line='PATH="/usr/local/sbin:/usr/local/bin:{{ android_sdk_install_location }}/tools:{{ android_sdk_install_location }}/tools/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"'
+- name: Set system wide PATH to contain Android SDK tools
+  lineinfile: dest=/etc/environment regexp=^PATH line='PATH="/usr/local/sbin:/usr/local/bin:{{ android_sdk_install_location }}/platform-tools:{{ android_sdk_install_location }}/tools:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"'
 
-  - name: Set system wide ANDROID_HOME environment variable
-    lineinfile: dest=/etc/environment regexp=^ANDROID_HOME line='ANDROID_HOME="{{ android_sdk_install_location }}"'
+- name: Set system wide ANDROID_HOME environment variable
+  lineinfile: dest=/etc/environment regexp=^ANDROID_HOME line='ANDROID_HOME="{{ android_sdk_install_location }}"'
 
-  - name: Install emulator
-    shell: echo y | "{{ android_sdk_install_location }}"/tools/bin/sdkmanager "{{item}}"
-    with_items:
-      - emulator
-      - platform-tools
-      - build-tools;26.0.0
+- name: Install platform and build tools
+  shell: echo y | "{{ android_sdk_install_location }}"/tools/android update sdk --filter {{ item }} --no-ui -a --force
+  with_items:
+    - platform-tools
+    - build-tools-23.0.0
 
-  - name: Install system images
-    shell: echo y | "{{ android_sdk_install_location }}"/tools/bin/sdkmanager "system-images;android-{{item}};google_apis;x86"
-    with_items: "{{ android_sdk_versions }}"
+- name: Install platforms
+  shell: echo y | "{{ android_sdk_install_location }}"/tools/android update sdk --filter android-{{ item }} --no-ui -a --force
+  with_items: "{{ android_sdk_versions }}"
 
-  - name: Install platforms
-    shell: echo y | "{{ android_sdk_install_location }}"/tools/bin/sdkmanager "platforms;android-{{item}}"
-    with_items: "{{ android_sdk_versions }}"
+- name: Install system images
+  shell: echo y | "{{ android_sdk_install_location }}"/tools/android update sdk --filter sys-img-x86-android-{{ item }} --no-ui -a --force
+  with_items: "{{ android_sdk_versions }}"
 
-  - name: Change permissions on SDK tools
-    file: path={{ android_sdk_install_location }} recurse=yes mode=0755
+- name: Change permissions on SDK tools
+  file: path={{ android_sdk_install_location }} recurse=yes mode=0755

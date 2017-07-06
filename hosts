@@ -1,10 +1,7 @@
 [emulators_servers]
-localhost
+emulator-x86.haze.yandex.net
 
 [devices_servers]
-localhost
-
-[selenium_hubs_servers]
 localhost
 
 [selenium_grid_server]

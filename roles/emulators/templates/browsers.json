@@ -6,7 +6,7 @@
     {% for sdk in android_sdk_versions %}
     "{{ sdk }}": {
           "image": "emulator-{{ skin | lower }}-{{ sdk }}",
-          "port": "4724",
+          "port": "4723",
           "path" : "/wd/hub",
           "volumes" : [
             "/usr/lib/jvm:/usr/lib/jvm:ro",

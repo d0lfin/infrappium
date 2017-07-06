@@ -1,19 +1,19 @@
 ---
 
-android_sdk_download_location: https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
-android_sdk_install_location: /opt/android-sdk
+android_sdk_download_location: https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
+android_sdk_install_location: /opt/android-sdk-linux
 android_sdk_versions:
-  - 24
-  - 25
+  - 22
+  - 23
 android_emulator_skins:
-  - HVGA
-  - QVGA
-  - WQVGA400
-  - WQVGA432
-  - WSVGA
+#  - HVGA
+#  - QVGA
+#  - WQVGA400
+#  - WQVGA432
+#  - WSVGA
   - WVGA800
-  - WVGA854
-  - WXGA720
+#  - WVGA854
+#  - WXGA720
   - WXGA800
   - WXGA800-7in
 

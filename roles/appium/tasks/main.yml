@@ -13,4 +13,3 @@
       name: appium
       version: '1.6.5'
       path: "{{ appium_install_location }}"
-      global: yes
