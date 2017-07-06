@@ -7,7 +7,6 @@ ENV DISPLAY :10
 
 COPY files/android.conf /etc/ld.so.conf.d/
 COPY files/xorg.conf /etc/X11/
-COPY files/x.sh /opt/
 COPY files/run_emulator.sh /opt/
 
 RUN dpkg --add-architecture i386 \
@@ -40,7 +39,6 @@ RUN dpkg --add-architecture i386 \
 # Reload cache after add location of graphic libraries
     && ldconfig -v \
 
-    && chmod +x /opt/x.sh \
     && chmod +x /opt/run_emulator.sh \
 
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

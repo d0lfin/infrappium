@@ -12,6 +12,7 @@
   docker:
     name: selenoid
     image: aerokube/selenoid:latest-release
+    command: "-session-attempt-timeout {{ session_timeout_sec }}s"
     ports:
       - "4444:4444"
     volumes:

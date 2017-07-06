@@ -5,11 +5,11 @@
     src: files/base-emulator-image
     dest: "{{ docker_tmp_images_path }}"
 
-- name: Build docker image
-  include: docker-image.yml
-  with_nested:
-      - "{{ android_sdk_versions }}"
-      - "{{ android_emulator_skins }}"
+#- name: Build docker image
+#  include: docker-image.yml
+#  with_nested:
+#      - "{{ android_sdk_versions }}"
+#      - "{{ android_emulator_skins }}"
 
 - name: Run selenoid
   include: selenoid.yml
