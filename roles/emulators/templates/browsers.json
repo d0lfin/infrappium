@@ -10,6 +10,7 @@
           "path" : "/wd/hub",
           "volumes" : [
             "/usr/lib/jvm:/usr/lib/jvm:ro",
+            "/dev/kvm:/dev/kvm:ro",
             "{{ android_sdk_install_location }}:{{ android_sdk_install_location }}:ro",
             "{{ appium_install_location }}/node_modules/appium:/opt/appium:ro"
           ]

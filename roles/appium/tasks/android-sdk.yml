@@ -19,6 +19,7 @@
     with_items:
       - emulator
       - platform-tools
+      - build-tools;26.0.0
 
   - name: Install system images
     shell: echo y | "{{ android_sdk_install_location }}"/tools/bin/sdkmanager "system-images;android-{{item}};google_apis;x86"

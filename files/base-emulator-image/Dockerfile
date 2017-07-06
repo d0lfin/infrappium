@@ -1,6 +1,7 @@
 FROM ubuntu-debootstrap:14.04
 
 ENV ANDROID_HOME /opt/android-sdk
+ENV ANDROID_SDK_ROOT /opt/android-sdk
 ENV PATH ${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:$PATH
 ENV LD_LIBRARY_PATH ${ANDROID_HOME}/tools/lib64/gles_mesa:${ANDROID_HOME}/tools/lib64/:${ANDROID_HOME}/tools/lib64/qt/lib
 ENV DISPLAY :10
@@ -48,4 +49,4 @@ COPY files/config.ini /root/.android/avd/Emulator.avd/
 
 CMD ln -s /usr/lib/jvm/java-8-openjdk-amd64/bin/java /usr/bin/java \
     && /opt/x.sh \
-    && /opt/appium/bin/appium.js -p 4724 --log-timestamp --avd Emulator
+    && node /opt/appium/ -p 4724 --log-timestamp --avd Emulator
