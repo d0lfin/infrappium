@@ -4,5 +4,5 @@ emulator-x86.haze.yandex.net
 [devices_servers]
 localhost
 
-[selenium_grid_server]
-localhost
+[grid_router_server]
+emulator-x86.haze.yandex.net

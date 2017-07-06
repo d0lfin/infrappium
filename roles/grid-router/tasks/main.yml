@@ -1,0 +1,31 @@
+---
+
+- name: Installing dependencies
+  apt:
+    pkg: python-passlib
+    state: present
+
+- name: Create grid router directories
+  file:
+    path: "{{ grid_router_location }}/quota"
+    state: directory
+
+- name: Build htpasswd file
+  htpasswd:
+    path: "{{ grid_router_location }}/users.htpasswd"
+    name: "{{ item.login }}"
+    password: "{{ item.password }}"
+  with_items: "{{ grid_router_users }}"
+
+- name: Build quota files
+  template: src=quota.xml  dest="{{ grid_router_location }}/quota/{{ item.login }}.xml"
+  with_items: "{{ grid_router_users }}"
+
+- name: Start a grid router container
+  docker:
+    name: ggr
+    image: aerokube/ggr:latest-release
+    net: host
+    volumes:
+      - "{{ grid_router_location }}:{{ grid_router_location }}"
+    state: started

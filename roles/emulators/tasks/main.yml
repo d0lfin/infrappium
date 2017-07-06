@@ -1,10 +1,10 @@
 ---
 
-- name: Copy image files to remote host
-  synchronize:
-    src: files/base-emulator-image
-    dest: "{{ docker_tmp_images_path }}"
-
+#- name: Copy image files to remote host
+#  synchronize:
+#    src: files/base-emulator-image
+#    dest: "{{ docker_tmp_images_path }}"
+#
 #- name: Build docker image
 #  include: docker-image.yml
 #  with_nested:

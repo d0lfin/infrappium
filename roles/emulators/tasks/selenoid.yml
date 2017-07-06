@@ -12,9 +12,9 @@
   docker:
     name: selenoid
     image: aerokube/selenoid:latest-release
-    command: "-session-attempt-timeout {{ session_timeout_sec }}s"
+    command: "-session-attempt-timeout {{ selenoid_session_timeout_sec }}s"
     ports:
-      - "4444:4444"
+      - "{{ selenoid_port }}:4444"
     volumes:
       - "/etc/selenoid:/etc/selenoid"
       - "/var/run/docker.sock:/var/run/docker.sock"

@@ -1,0 +1,9 @@
+---
+
+- hosts: grid_router_server
+  become: true
+  vars_files:
+    - defaults/main.yml
+  roles:
+#    - docker
+    - grid-router

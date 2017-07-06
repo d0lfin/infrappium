@@ -23,4 +23,12 @@ docker_tmp_images_path: /tmp
 
 appium_install_location: /opt/appium
 
-session_timeout_sec: 300
+selenoid_session_timeout_sec: 300
+selenoid_port: 4445
+
+grid_router_location: /etc/grid-router
+grid_router_users:
+  - { login: user1, password: user1 }
+  - { login: user2, password: user2 }
+
+selenium_hub_port: 4443

@@ -1,0 +1,15 @@
+<qa:browsers xmlns:qa="urn:config.gridrouter.qatools.ru">
+    {% for skin in android_emulator_skins %}
+    <browser name="{{ skin | lower }}" defaultVersion="{{ android_sdk_versions[0] }}">
+        {% for sdk in android_sdk_versions %}
+        <version number="{{ sdk }}">
+                    <region name="1">
+                {% for host in groups['emulators_servers'] %}
+            <host name="{{ host }}" port="{{ selenoid_port }}" count="1"/>
+                {% endfor %}
+        </region>
+                </version>
+        {% endfor %}
+  </browser>
+    {% endfor %}
+</qa:browsers>
