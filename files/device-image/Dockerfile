@@ -3,7 +3,7 @@ FROM ubuntu-debootstrap:14.04
 ENV ANDROID_HOME /opt/android-sdk
 ENV PATH ${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:$PATH
 ENV PORT 4723
-ENV HUB_PORT 4445
+ENV HUB_PORT 4443
 ENV DEVICEUDID qwert
 
 COPY files/configgen.sh /opt/configgen.sh

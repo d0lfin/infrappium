@@ -12,4 +12,18 @@
         {% endfor %}
   </browser>
     {% endfor %}
+
+    {% for device_type in android_device_types %}
+    <browser name="{{ device_type | lower }}" defaultVersion="{{ android_device_versions[0] }}">
+        {% for android_version in android_device_versions %}
+        <version number="{{ android_version }}">
+            <region name="1">
+                {% for host in groups['devices_servers'] %}
+                <host name="{{ host }}" port="{{ selenium_hub_port }}" count="1"/>
+                {% endfor %}
+            </region>
+        </version>
+        {% endfor %}
+    </browser>
+    {% endfor %}
 </qa:browsers>

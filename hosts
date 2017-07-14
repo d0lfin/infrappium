@@ -1,8 +1,8 @@
 [emulators_servers]
-emulator-x86.haze.yandex.net
+localhost
 
 [devices_servers]
 localhost
 
 [grid_router_server]
-emulator-x86.haze.yandex.net
+localhost

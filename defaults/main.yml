@@ -6,16 +6,22 @@ android_sdk_versions:
   - 22
   - 23
 android_emulator_skins:
-#  - HVGA
-#  - QVGA
-#  - WQVGA400
-#  - WQVGA432
-#  - WSVGA
+  - HVGA
+  - QVGA
+  - WQVGA400
+  - WQVGA432
+  - WSVGA
   - WVGA800
-#  - WVGA854
-#  - WXGA720
+  - WVGA854
+  - WXGA720
   - WXGA800
   - WXGA800-7in
+android_device_types:
+  - Tablet
+  - Phone
+android_device_versions:
+  - 5.1.1
+  - 6.0.1
 
 docker_device_image_name: appium-device
 docker_base_emulator_image_name: appium-emulator

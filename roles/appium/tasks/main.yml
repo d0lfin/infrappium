@@ -1,15 +1,16 @@
 ---
-  - name: Install Java
-    include: java.yml
 
-  - name: Install Android SDK
-    include: android-sdk.yml
+- name: Install Java
+  include: java.yml
 
-  - name: Install NodeJS
-    include: nodejs.yml
+- name: Install Android SDK
+  include: android-sdk.yml
 
-  - name: Install "Appium" node.js package on version 1.6.1.
-    npm:
-      name: appium
-      version: '1.6.5'
-      path: "{{ appium_install_location }}"
+- name: Install NodeJS
+  include: nodejs.yml
+
+- name: Install "Appium" node.js package on version 1.6.1.
+  npm:
+    name: appium
+    version: '1.6.5'
+    path: "{{ appium_install_location }}"

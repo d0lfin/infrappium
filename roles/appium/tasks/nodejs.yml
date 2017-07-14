@@ -1,6 +1,7 @@
 ---
-  - name: add nodejs ppa
-    shell: "curl --silent --location https://deb.nodesource.com/setup_6.x | bash -"
 
-  - name: install nodejs
-    apt: name=nodejs state=present
+- name: add nodejs ppa
+  shell: "curl --silent --location https://deb.nodesource.com/setup_6.x | bash -"
+
+- name: install nodejs
+  apt: name=nodejs state=present
